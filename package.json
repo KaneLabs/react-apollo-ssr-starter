@@ -1,6 +1,6 @@
 {
   "name": "react-apollo-ssr-starter",
-  "version": "0.0.2",
+  "version": "1.0.0",
   "description": "Server Side Rendering w/ React & Apollo. Supports Async, React-Router, ES7+, Webpack, Babel",
   "main": "src/server.jsx",
   "scripts": {
