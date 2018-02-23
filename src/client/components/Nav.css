@@ -1,0 +1,10 @@
+.Nav {
+  height: 4em;
+  width: 100%;
+  background: linear-gradient(rgba(0,0,0,1) 10%, rgba(0,0,0,0) 100%);
+
+  padding: 1em;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+}
