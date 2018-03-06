@@ -2,7 +2,7 @@
   "name": "react-apollo-ssr-starter",
   "version": "1.0.0",
   "description": "Server Side Rendering w/ React & Apollo. Supports Async, React-Router, ES7+, Webpack, Babel",
-  "main": "src/server.jsx",
+  "main": "src/server.js",
   "scripts": {
     "start": "node build/build.js",
     "dev:server": "nodemon --watch build --exec \"node build/build.js\"",
