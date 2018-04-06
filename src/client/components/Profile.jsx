@@ -12,7 +12,7 @@ class Profile extends React.Component {
     if (error) return (<p>{error}</p>);
 
     if (user) return (
-        <p style={{ color: 'rgba(255,255,255,0.87)' }}>Logged in as @{user.name}</p>
+        <p style={{ color: 'rgba(255,255,255,0.87)' }}>@{user.name}</p>
     )
   }
 }
