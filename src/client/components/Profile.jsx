@@ -3,43 +3,30 @@ import { connect } from 'react-redux';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 
-class Login extends React.Component {
-  state = { username: '', password: '' };
-
-  usernameChange = e => this.setState({ username: e.target.value });
-  passwordChange = e => this.setState({ password: e.target.value });
-
-  onSubmit = (e) => {
-    e.preventDefault();
-    const { login } = this.props;
-    const { username, password } = this.state;
-
-    login(username, password);
-  }
-
+class Profile extends React.Component {
   render() {
-    const { username, password } = this.state;
     const { loading, error, user } = this.props.data;
 
     if (loading) return (<p>loading...</p>);
 
     if (error) return (<p>{error}</p>);
 
-    if (user) return (<p>Logged in as {user.username}</p>)
+    if (user) return (
+        <p style={{ color: 'rgba(255,255,255,0.87)' }}>Logged in as @{user.name}</p>
+    )
   }
 }
 
 const GET_USER = gql`
-  query user($id: ID!) {
-    user(id: $id) {
-      id
-      username
+  query user($name: String!) {
+    user(name: $name) {
+      name
     }
   }
 `;
 
 export default graphql(GET_USER, {
   options: props => (
-    { variables: { id: props.match.params.id } }
+    { variables: { name: props.match.params.name } }
   )
-})(Login);
+})(Profile);

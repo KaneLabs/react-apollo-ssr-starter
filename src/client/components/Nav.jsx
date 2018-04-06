@@ -4,8 +4,7 @@ import './Nav.css';
 
 const Nav = ({ auth }) => (
   <nav className='Nav'>
-    <span>Server Side Rendering React and Apollo</span>
-
+    <span>KλNE</span>
   </nav>
 );
 

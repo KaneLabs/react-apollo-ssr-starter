@@ -6,9 +6,10 @@ import Nav from './components/Nav';
 
 import App from './components/App';
 
-import Books from './components/Books';
 import Auth from './components/Auth';
 import Profile from './components/Profile';
+
+import LandingPage from './components/LandingPage';
 
 
 const routes = [
@@ -17,7 +18,7 @@ const routes = [
     routes: [
       {
         path: '/',
-        component: Books,
+        component: LandingPage,
         exact: true,
       },
       {
@@ -25,7 +26,7 @@ const routes = [
         component: Auth,
       },
       {
-        path: '/:id',
+        path: '/:name',
         component: Profile,
       },
     ],
