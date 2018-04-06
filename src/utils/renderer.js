@@ -17,6 +17,14 @@ import serialize from 'serialize-javascript';
 
 import { Helmet } from 'react-helmet';
 
+
+import { SheetsRegistry } from 'react-jss/lib/jss';
+import JssProvider from 'react-jss/lib/JssProvider';
+import { MuiThemeProvider, createGenerateClassName } from 'material-ui-next/styles';
+import { green, red } from 'material-ui-next/colors';
+
+import theme from './themes';
+
 import routes from '../client/routes';
 
 const renderer =  async (req) => {
@@ -37,13 +45,24 @@ const renderer =  async (req) => {
     cache,
   });
 
+    // Create a sheetsRegistry instance.
+  const sheetsRegistry = new SheetsRegistry();
+
+  const generateClassName = createGenerateClassName();
+
   const content = await renderToStringWithData(
     <ApolloProvider client={client}>
-      <StaticRouter location={req.path} context={{}}>
-        {renderRoutes(routes)}
-      </StaticRouter>
+      <JssProvider registry={sheetsRegistry} generateClassName={generateClassName}>
+        <MuiThemeProvider theme={theme} sheetsManager={new Map()}>
+          <StaticRouter location={req.path} context={{}}>
+            {renderRoutes(routes)}
+          </StaticRouter>
+        </MuiThemeProvider>
+      </JssProvider>
     </ApolloProvider>
   );
+
+  const css = sheetsRegistry.toString()
 
   const helmet = Helmet.renderStatic()
 
@@ -54,6 +73,7 @@ const renderer =  async (req) => {
         ${helmet.meta.toString()}
         <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
         <link href="/app.css" rel="stylesheet">
+        <style id="jss-server-side">${css}</style>
         <meta name="viewport" content="width=device-width, initial-scale=1">
       </head>
       <body>
